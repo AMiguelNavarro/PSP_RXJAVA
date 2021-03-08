@@ -19,7 +19,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.18</version>
-            <scope>provided</scope>
+<!--            <scope>provided</scope>  OJO CON ESTA LÍNE, QUITAR O DA FALLO LOMBOK-->
         </dependency>
 
         <!--   DEPENDENCIA DE RX JAVA COGIDA DE LA WIKI DE SANTI https://psp.codeandcoke.com/apuntes:reactiva#observablelist_de_javafx     -->

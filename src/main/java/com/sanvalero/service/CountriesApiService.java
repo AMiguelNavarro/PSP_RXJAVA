@@ -11,13 +11,18 @@ import java.util.List;
 public interface CountriesApiService {
 
     /**
-     * Devuelve todas las countries de la API
+     * Devuelve todas los paises de la API
      * @return
      */
     @GET("/rest/v2/all")
-    Call<List<Country>> getAllCountries();
+    Call<List<Country>> getAllCountries(); // Call necesario para que funcione retrofit
 
 
+    /**
+     * Devuelve los paises por nombre
+     * @param name
+     * @return
+     */
     @GET("rest/v2/name/{name}")
     Call<List<Country>> getCountryByName(@Path("name") String name);
 

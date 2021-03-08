@@ -32,7 +32,7 @@ public class CountriesService {
 
         try {
             Response<List<Country>> response = allCountriesCall.execute();
-            return response.body();
+            return response.body(); // Recoge el JSON de la web
         } catch (IOException e) {
             e.printStackTrace();
         }
