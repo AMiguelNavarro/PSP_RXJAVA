@@ -47,4 +47,17 @@ public class CountriesService {
 //
 //    }
 
+
+    public List<Country> getCountryByName(String name) {
+        Call<List<Country>> countryByNameCall = api.getCountryByName(name);
+
+        try {
+            Response<List<Country>> response = countryByNameCall.execute();
+            return response.body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
 }
