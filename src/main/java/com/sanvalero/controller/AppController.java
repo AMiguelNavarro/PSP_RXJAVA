@@ -2,6 +2,7 @@ package com.sanvalero.controller;
 
 import com.sanvalero.domain.Country;
 import com.sanvalero.service.CountriesService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 
 public class AppController implements Initializable {
@@ -43,6 +45,7 @@ public class AppController implements Initializable {
 
         List<Country> allCountries = service.getAllCountries();
 
+
         lvList.setItems(FXCollections.observableList(allCountries));
 
 //        service.getAllCountries()
@@ -56,12 +59,31 @@ public class AppController implements Initializable {
 
     }
 
+
     @FXML
     public void findByName(Event event) {
         String name = tfName.getText();
+
+        if (name.isEmpty() || name.isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("El campo nombre no puede estar vacío");
+            alert.show();
+            return;
+        }
+
         tvByName.getItems().clear();
 
         List<Country> countryByName = service.getCountryByName(name);
+
+        if (countryByName == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setContentText("No hay ningún país con ese nombre");
+            alert.show();
+
+            return;
+        }
 
         tvByName.setItems(FXCollections.observableList(countryByName));
 
